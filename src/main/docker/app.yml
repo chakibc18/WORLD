@@ -1,0 +1,14 @@
+version: '2'
+services:
+    world-app:
+        image: world
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://world-mysql:3306/world?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    world-mysql:
+        extends:
+            file: mysql.yml
+            service: world-mysql
